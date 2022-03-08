@@ -20,3 +20,17 @@ catkin_make
 echo "source /home/leo/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 catkin_make
+sudo apt install -y ros-noetic-depthimage-to-laserscan ros-noetic-slam-toolbox*
+sudo apt install -y ros-noetic-slam-gmapping ros-noetic-amcl ros-noetic-move-base*
+sudo apt install -y ros-noetic-hector-slam*
+source ~/.bashrc
+cd ~/catkin_ws/src
+git clone https://github.com/Slamtec/rplidar_ros.git
+cd ~/catkin_ws/
+catkin_make
+source ~/.bashrc
+sudo cp ~/catkin_ws/src/rom2109/rom2109_controller/udev/rplidar.rules /etc/udev/rules.d
+sudo ln -s /dev/serial/by-id/usb-1a86_USB_Serial-if00-port0 ~/robotController
+sudo apt install -y i2c-tools python3-pip
+sudo pip3 install smbus2
+sudo reboot
